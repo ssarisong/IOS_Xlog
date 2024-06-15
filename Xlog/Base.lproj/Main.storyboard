@@ -113,6 +113,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="저장하기"/>
+                                        <connections>
+                                            <action selector="saveButtonClicked:" destination="105-9m-Fgf" eventType="touchUpInside" id="6e2-B7-1CP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -127,6 +130,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="운동기록 추가" image="add-icon" id="HTL-Ui-Heo"/>
+                    <connections>
+                        <outlet property="detailsTextView" destination="IDP-W2-KVx" id="L0X-kY-oC2"/>
+                        <outlet property="endTimePicker" destination="M8k-Qg-ry1" id="Ref-Mi-zb9"/>
+                        <outlet property="exerciseTypePicker" destination="Sb4-2z-wAV" id="VY3-fj-Jg3"/>
+                        <outlet property="saveButton" destination="gNh-2S-4YS" id="bGw-fk-LNO"/>
+                        <outlet property="startDateTimePicker" destination="h1n-uk-GkG" id="hxx-FN-gzd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f4o-uo-OVX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,7 +172,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

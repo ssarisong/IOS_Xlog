@@ -15,6 +15,7 @@
 		601866D12C1DF24200C79D1B /* SeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601866D02C1DF24200C79D1B /* SeeViewController.swift */; };
 		609093BC2C1DFFD6005899D8 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609093BB2C1DFFD6005899D8 /* AddViewController.swift */; };
 		609093BF2C1E009D005899D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609093BD2C1E009D005899D8 /* Main.storyboard */; };
+		609093C12C1E0905005899D8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609093C02C1E0905005899D8 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		601866D02C1DF24200C79D1B /* SeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeViewController.swift; sourceTree = "<group>"; };
 		609093BB2C1DFFD6005899D8 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		609093BE2C1E009D005899D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		609093C02C1E0905005899D8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				601866D02C1DF24200C79D1B /* SeeViewController.swift */,
 				609093BB2C1DFFD6005899D8 /* AddViewController.swift */,
 				609093BD2C1E009D005899D8 /* Main.storyboard */,
+				609093C02C1E0905005899D8 /* DataManager.swift */,
 			);
 			path = Xlog;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				609093BC2C1DFFD6005899D8 /* AddViewController.swift in Sources */,
+				609093C12C1E0905005899D8 /* DataManager.swift in Sources */,
 				601866CF2C1DF22A00C79D1B /* AlarmViewController.swift in Sources */,
 				600C9BD72C1DEFFB00F60BC7 /* AppDelegate.swift in Sources */,
 				601866D12C1DF24200C79D1B /* SeeViewController.swift in Sources */,
