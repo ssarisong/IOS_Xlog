@@ -1,0 +1,6 @@
+framework module Pods_Xlog {
+  umbrella header "Pods-Xlog-umbrella.h"
+
+  export *
+  module * { export * }
+}

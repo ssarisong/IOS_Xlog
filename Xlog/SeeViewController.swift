@@ -3,13 +3,18 @@ import UIKit
 class SeeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var exerciseListTableView: UITableView!
+    @IBOutlet weak var detailTextView: UITextView!
     var records: [ExerciseRecord] = []
+    let initDetailMessage = "운동 기록을 선택해주세요."
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         exerciseListTableView.dataSource = self
         exerciseListTableView.delegate = self
+        
+        detailTextView.text = initDetailMessage
+        detailTextView.textColor = UIColor.lightGray
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,7 +37,8 @@ class SeeViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         cell.typeLabel.text = record.type
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "MM월 dd일"
         cell.dateLabel.text = dateFormatter.string(from: record.startDate)
                 
         let duration = Calendar.current.dateComponents([.minute], from: record.startDate, to: record.endDate).minute ?? 0
@@ -44,14 +50,20 @@ class SeeViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // DataManager에서 기록 삭제
             DataManager.shared.deleteRecord(at: indexPath.row)
-                
-            // 로컬 데이터 업데이트
             records = DataManager.shared.getAllRecords()
-                
-            // 테이블 뷰 업데이트
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedRecord = records[indexPath.row]
+        detailTextView.text = selectedRecord.details
+        detailTextView.textColor = UIColor.black
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        detailTextView.text = initDetailMessage
+    }
+
 }

@@ -73,15 +73,19 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func resetFields() {
         exerciseTypePicker.selectRow(0, inComponent: 0, animated: false)
         
-        let now = Date()
-        // Calendar와 DateComponents를 사용하여 현재 날짜와 시간의 시, 분을 가져오고, 초와 밀리초를 0으로 설정합니다.
         let calendar = Calendar.current
-        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: now)
-        components.second = 0
-        components.nanosecond = 0
-        if let modifiedDate = calendar.date(from: components) {
-            startDateTimePicker.date = modifiedDate
-            endTimePicker.date = modifiedDate
+        var startDate = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+        var endDate = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+        startDate.second = 0
+        startDate.nanosecond = 0
+        endDate.second = 0
+        endDate.nanosecond = 0
+        endDate.minute = endDate.minute! + 1
+        if let startModifiedDate = calendar.date(from: startDate) {
+            startDateTimePicker.date = startModifiedDate
+        }
+        if let endModifiedDate = calendar.date(from: endDate) {
+            endTimePicker.date = endModifiedDate
         }
         
         detailsTextView.text = detailsPlaceholder
