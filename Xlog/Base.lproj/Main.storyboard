@@ -109,6 +109,7 @@
                                                 <connections>
                                                     <outlet property="dateLabel" destination="fBO-tc-5fr" id="eXe-s9-SIN"/>
                                                     <outlet property="durationLabel" destination="3yo-KX-jnU" id="pSV-r3-JkX"/>
+                                                    <outlet property="typeColorButton" destination="xC4-w9-PjG" id="0vX-a0-r8B"/>
                                                     <outlet property="typeLabel" destination="7Gj-UB-iUV" id="5xA-e2-M9W"/>
                                                 </connections>
                                             </tableViewCell>
@@ -301,13 +302,13 @@
                                         <rect key="frame" x="0.0" y="220.66666666666669" width="373" height="60"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="h1n-uk-GkG">
-                                                <rect key="frame" x="0.0" y="0.0" width="209.66666666666666" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="219.66666666666666" height="60"/>
                                                 <locale key="locale" localeIdentifier="ko"/>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" ~ " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="36.700000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="3DA-Q6-v0r">
-                                                <rect key="frame" x="209.66666666666666" y="0.0" width="69.999999999999972" height="60"/>
+                                                <rect key="frame" x="219.66666666666666" y="0.0" width="59.999999999999972" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="70" id="3Ky-KC-WrG"/>
+                                                    <constraint firstAttribute="width" constant="60" id="3Ky-KC-WrG"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                                 <nil key="textColor"/>

@@ -11,4 +11,5 @@ class RecordTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var typeColorButton: UIButton!
 }

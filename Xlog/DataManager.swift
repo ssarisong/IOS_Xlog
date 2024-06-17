@@ -29,7 +29,7 @@ class DataManager {
     }
     
     func getAllRecords() -> [ExerciseRecord] {
-        return records.sorted(by: { $0.startDate < $1.startDate })
+        return records.sorted(by: { $0.startDate > $1.startDate })
     }
     
     func deleteRecord(at index: Int) {

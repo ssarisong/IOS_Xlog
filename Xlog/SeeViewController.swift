@@ -80,91 +80,54 @@ class SeeViewController: UIViewController, UITableViewDataSource, UITableViewDel
             currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
         }
         
-        let groupedRecords = Dictionary(grouping: records.filter { $0.startDate >= oneWeekAgo }) { (record) -> String in
+        let filteredRecords = records.filter { $0.startDate >= oneWeekAgo }
+            
+        if filteredRecords.isEmpty {
+            barChartView.data = nil
+            return
+        }
+        
+        let groupedRecords = Dictionary(grouping: filteredRecords) { (record) -> String in
             return dateFormatter.string(from: record.startDate)
         }
         
-        var dataEntries: [BarChartDataEntry] = []
         var exerciseTypes: [String: Int] = [:]
+        var yValuesPerDate: [[Double]] = Array(repeating: Array(repeating: 0.0, count: exerciseTypes.count), count: datesInWeek.count)
         
         for (index, date) in datesInWeek.enumerated() {
-            var exerciseDurations: [String: Double] = [:]
-            
             if let recordsForDate = groupedRecords[date] {
                 for record in recordsForDate {
                     let duration = record.endDate.timeIntervalSince(record.startDate) / 60.0 // 분 단위로 변환
-                    if let existingDuration = exerciseDurations[record.type] {
-                        exerciseDurations[record.type] = existingDuration + duration
-                    } else {
-                        exerciseDurations[record.type] = duration
+                    if exerciseTypes[record.type] == nil {
+                        exerciseTypes[record.type] = exerciseTypes.count
+                        // 각 날짜별 yValues 배열을 확장
+                        for i in 0..<yValuesPerDate.count {
+                            yValuesPerDate[i].append(0.0)
+                        }
+                    }
+                    if let typeIndex = exerciseTypes[record.type] {
+                        yValuesPerDate[index][typeIndex] += duration
                     }
                 }
             }
-            
-            // 운동 유형을 일관되게 정렬
-            for (type, duration) in exerciseDurations {
-                if exerciseTypes[type] == nil {
-                    exerciseTypes[type] = exerciseTypes.count
-                }
-            }
-            
-            // 운동 유형을 기준으로 yValues 정렬
-            let yValues = exerciseTypes.sorted { $0.value < $1.value }.map { exerciseDurations[$0.key] ?? 0.0 }
-            let entry = BarChartDataEntry(x: Double(index), yValues: yValues.isEmpty ? [0.0] : yValues)
+        }
+        
+        var dataEntries: [BarChartDataEntry] = []
+        
+        for (index, date) in datesInWeek.enumerated() {
+            let entry = BarChartDataEntry(x: Double(index), yValues: yValuesPerDate[index])
             dataEntries.append(entry)
         }
         
-        let colors: [UIColor] = [.red, .blue, .green, .yellow, .purple, .orange, .brown, .gray, .cyan, .magenta]
-        
-        let dataSet = BarChartDataSet(entries: dataEntries, label: "운동 종류")
-        dataSet.colors = exerciseTypes.keys.sorted(by: { exerciseTypes[$0]! < exerciseTypes[$1]! }).map { type in
-            switch type {
-            case "걷기":
-                return UIColor.red
-            case "달리기":
-                return UIColor.blue
-            case "수영":
-                return UIColor.green
-            case "요가/필라테스":
-                return UIColor.yellow
-            case "헬스":
-                return UIColor.purple
-            case "자전거":
-                return UIColor.orange
-            case "축구":
-                return UIColor.brown
-            case "농구":
-                return UIColor.lightGray
-            case "탁구":
-                return UIColor.cyan
-            case "배구":
-                return UIColor.magenta
-            case "야구":
-                return UIColor.systemPink
-            case "배드민턴/테니스":
-                return UIColor.darkGray
-            case "줄넘기":
-                return UIColor.systemIndigo
-            case "볼링":
-                return UIColor.systemTeal
-            case "골프":
-                return UIColor.systemMint
-            case "등산":
-                return UIColor.black
-            default:
-                return UIColor.white
-            }
-        }
-        //dataSet.colors = colors
-        dataSet.valueFormatter = DefaultValueFormatter(decimals: 0)
-        dataSet.valueTextColor = .black
-        dataSet.valueFont = .systemFont(ofSize: 10, weight: .light)
+        let dataSet = BarChartDataSet(entries: dataEntries, label: "")
+        dataSet.colors = exerciseTypes.keys.sorted(by: { exerciseTypes[$0]! < exerciseTypes[$1]! }).map { colorForExerciseType($0) }
+        dataSet.stackLabels = exerciseTypes.keys.sorted(by: { exerciseTypes[$0]! < exerciseTypes[$1]! })
         dataSet.drawValuesEnabled = false
         
         let chartData = BarChartData(dataSet: dataSet)
         
         barChartView.data = chartData
-        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: datesInWeek.map { dateFormatter.string(from: dateFormatter.date(from: $0)!) })
+        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: datesInWeek)
     }
     
     
@@ -189,6 +152,12 @@ class SeeViewController: UIViewController, UITableViewDataSource, UITableViewDel
         cell.durationLabel.text = "\(duration) 분"
         cell.detailTextLabel?.text = record.details
         
+        cell.typeColorButton.backgroundColor = colorForExerciseType(record.type)
+        cell.typeColorButton.layer.borderColor = UIColor.white.cgColor
+        cell.typeColorButton.layer.borderWidth = 5.0
+        cell.typeColorButton.layer.cornerRadius = 8.0
+        cell.typeColorButton.clipsToBounds = true
+        
         return cell
     }
     
@@ -197,6 +166,7 @@ class SeeViewController: UIViewController, UITableViewDataSource, UITableViewDel
             DataManager.shared.deleteRecord(at: indexPath.row)
             records = DataManager.shared.getAllRecords()
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            updateChartData()
         }
     }
     
@@ -208,6 +178,45 @@ class SeeViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         detailTextView.text = initDetailMessage
+    }
+    
+    func colorForExerciseType(_ type: String) -> UIColor {
+        switch type {
+        case "걷기":
+            return UIColor.red
+        case "달리기":
+            return UIColor.blue
+        case "수영":
+            return UIColor.green
+        case "요가/필라테스":
+            return UIColor.yellow
+        case "헬스":
+            return UIColor.purple
+        case "자전거":
+            return UIColor.orange
+        case "축구":
+            return UIColor.brown
+        case "농구":
+            return UIColor.lightGray
+        case "탁구":
+            return UIColor.cyan
+        case "배구":
+            return UIColor.magenta
+        case "야구":
+            return UIColor.systemPink
+        case "배드민턴/테니스":
+            return UIColor.darkGray
+        case "줄넘기":
+            return UIColor.systemIndigo
+        case "볼링":
+            return UIColor.systemTeal
+        case "골프":
+            return UIColor.systemMint
+        case "등산":
+            return UIColor.black
+        default:
+            return UIColor.white
+        }
     }
 }
 
