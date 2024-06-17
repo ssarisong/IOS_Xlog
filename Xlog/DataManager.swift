@@ -33,12 +33,15 @@ class DataManager {
     }
     
     func deleteRecord(at index: Int) {
-        guard index >= 0 && index < records.count else {
-            print("Invalid index")
-            return
+        let sortedRecords = getAllRecords()
+        let recordToDelete = sortedRecords[index]
+        
+        if let originalIndex = records.firstIndex(where: { $0.type == recordToDelete.type && $0.startDate == recordToDelete.startDate && $0.endDate == recordToDelete.endDate && $0.details == recordToDelete.details }) {
+            records.remove(at: originalIndex)
+            saveRecords()
+        } else {
+            print("Record not found")
         }
-        records.remove(at: index)
-        saveRecords()
     }
     
     func deleteRecord(_ record: ExerciseRecord) {
@@ -55,10 +58,10 @@ class DataManager {
             UserDefaults.standard.set(encoded, forKey: "exerciseRecords")
         }
     }
-        
+    
     private func loadRecords() {
         if let savedData = UserDefaults.standard.data(forKey: "exerciseRecords"),
-            let decodedRecords = try? JSONDecoder().decode([ExerciseRecord].self, from: savedData) {
+           let decodedRecords = try? JSONDecoder().decode([ExerciseRecord].self, from: savedData) {
             records = decodedRecords
         }
     }

@@ -94,8 +94,18 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         let selectedExercise = exerciseTypes[exerciseTypePicker.selectedRow(inComponent: 0)]
+        
+        let calendar = Calendar.current
         let startDate = startDateTimePicker.date
-        let endDate = endTimePicker.date
+        var endDate = endTimePicker.date
+        var endDateComponents = calendar.dateComponents([.hour, .minute, .second], from: endDate)
+        endDateComponents.year = calendar.component(.year, from: startDate)
+        endDateComponents.month = calendar.component(.month, from: startDate)
+        endDateComponents.day = calendar.component(.day, from: startDate)
+        if let newEndDate = calendar.date(from: endDateComponents) {
+            endDate = newEndDate
+        }
+        
         let details = detailsTextView.text == detailsPlaceholder ? "" : detailsTextView.text
             
         let newRecord = ExerciseRecord(type: selectedExercise, startDate: startDate, endDate: endDate, details: details!)
