@@ -11,12 +11,13 @@
 		600C9BD92C1DEFFB00F60BC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600C9BD82C1DEFFB00F60BC7 /* SceneDelegate.swift */; };
 		600C9BE02C1DEFFC00F60BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 600C9BDF2C1DEFFC00F60BC7 /* Assets.xcassets */; };
 		600C9BE32C1DEFFC00F60BC7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 600C9BE22C1DEFFC00F60BC7 /* Base */; };
-		601866CF2C1DF22A00C79D1B /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601866CE2C1DF22A00C79D1B /* AlarmViewController.swift */; };
+		601866CF2C1DF22A00C79D1B /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601866CE2C1DF22A00C79D1B /* TodoViewController.swift */; };
 		601866D12C1DF24200C79D1B /* SeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601866D02C1DF24200C79D1B /* SeeViewController.swift */; };
 		602A6B792C1EA2BA00D8C008 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A6B782C1EA2BA00D8C008 /* RecordTableViewCell.swift */; };
 		609093BC2C1DFFD6005899D8 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609093BB2C1DFFD6005899D8 /* AddViewController.swift */; };
 		609093BF2C1E009D005899D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609093BD2C1E009D005899D8 /* Main.storyboard */; };
 		609093C12C1E0905005899D8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609093C02C1E0905005899D8 /* DataManager.swift */; };
+		60D2EDE92C216DDC0051BCFE /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D2EDE82C216DDC0051BCFE /* TodoTableViewCell.swift */; };
 		ED9F07CFFB384715C4AF6CEE /* Pods_Xlog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEF1BDADB349B68708CAF9D /* Pods_Xlog.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,12 +29,13 @@
 		600C9BDF2C1DEFFC00F60BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		600C9BE22C1DEFFC00F60BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		600C9BE42C1DEFFC00F60BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		601866CE2C1DF22A00C79D1B /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		601866CE2C1DF22A00C79D1B /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		601866D02C1DF24200C79D1B /* SeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeViewController.swift; sourceTree = "<group>"; };
 		602A6B782C1EA2BA00D8C008 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		609093BB2C1DFFD6005899D8 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		609093BE2C1E009D005899D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		609093C02C1E0905005899D8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		60D2EDE82C216DDC0051BCFE /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		C17FE10E37D1B75A1B7A60B9 /* Pods-Xlog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Xlog.release.xcconfig"; path = "Target Support Files/Pods-Xlog/Pods-Xlog.release.xcconfig"; sourceTree = "<group>"; };
 		FCEF1BDADB349B68708CAF9D /* Pods_Xlog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Xlog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,7 +82,7 @@
 		600C9BD52C1DEFFB00F60BC7 /* Xlog */ = {
 			isa = PBXGroup;
 			children = (
-				601866CE2C1DF22A00C79D1B /* AlarmViewController.swift */,
+				601866CE2C1DF22A00C79D1B /* TodoViewController.swift */,
 				600C9BD62C1DEFFB00F60BC7 /* AppDelegate.swift */,
 				600C9BD82C1DEFFB00F60BC7 /* SceneDelegate.swift */,
 				600C9BDF2C1DEFFC00F60BC7 /* Assets.xcassets */,
@@ -91,6 +93,7 @@
 				609093BD2C1E009D005899D8 /* Main.storyboard */,
 				609093C02C1E0905005899D8 /* DataManager.swift */,
 				602A6B782C1EA2BA00D8C008 /* RecordTableViewCell.swift */,
+				60D2EDE82C216DDC0051BCFE /* TodoTableViewCell.swift */,
 			);
 			path = Xlog;
 			sourceTree = "<group>";
@@ -221,7 +224,8 @@
 				609093BC2C1DFFD6005899D8 /* AddViewController.swift in Sources */,
 				609093C12C1E0905005899D8 /* DataManager.swift in Sources */,
 				602A6B792C1EA2BA00D8C008 /* RecordTableViewCell.swift in Sources */,
-				601866CF2C1DF22A00C79D1B /* AlarmViewController.swift in Sources */,
+				60D2EDE92C216DDC0051BCFE /* TodoTableViewCell.swift in Sources */,
+				601866CF2C1DF22A00C79D1B /* TodoViewController.swift in Sources */,
 				600C9BD72C1DEFFB00F60BC7 /* AppDelegate.swift in Sources */,
 				601866D12C1DF24200C79D1B /* SeeViewController.swift in Sources */,
 				600C9BD92C1DEFFB00F60BC7 /* SceneDelegate.swift in Sources */,
